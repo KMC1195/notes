@@ -17,7 +17,7 @@ export default function _layout() {
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name="add"
+              name="menu"
               size={25}
               color={focused ? "#008cff" : "#606060"}
             />
@@ -29,7 +29,7 @@ export default function _layout() {
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name="settings"
+              name="settings-outline"
               size={25}
               color={focused ? "#008cff" : "#606060"}
             />

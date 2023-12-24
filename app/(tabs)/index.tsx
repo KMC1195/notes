@@ -30,8 +30,33 @@ export default function index() {
     >
       <StatusBar style="dark" />
 
-      {/* Title */}
-      <Text style={{ fontSize: hp(7) }}>Notatki</Text>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        {/* Title */}
+        <Text style={{ fontSize: hp(7) }}>Notatki</Text>
+
+        {/* Change notes view mode button */}
+        <TouchableOpacity
+          style={{
+            backgroundColor: "#cecece",
+            height: hp(5),
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            borderRadius: 5,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Ionicons name="list" size={hp(2.5)} />
+        </TouchableOpacity>
+      </View>
 
       {/* Search Bar */}
       <View

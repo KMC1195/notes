@@ -22,7 +22,7 @@ export default function add() {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "space-evenly",
+          justifyContent: "space-between",
         }}
       >
         <TouchableOpacity
@@ -39,7 +39,7 @@ export default function add() {
             justifyContent: "center",
           }}
         >
-          <Ionicons name="arrow-back" size={25} />
+          <Ionicons name="arrow-back" size={hp(2.5)} />
         </TouchableOpacity>
         <Text style={{ fontSize: hp(5.5) }}>Dodaj notatkę</Text>
       </View>
