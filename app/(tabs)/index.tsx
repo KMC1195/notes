@@ -14,9 +14,11 @@ import {
 } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import ListTile from "../../components/ListTile";
+import { useRouter } from "expo-router";
 
 export default function index() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
 
   return (
     <View
@@ -91,6 +93,7 @@ export default function index() {
 
       {/* Add Button */}
       <TouchableOpacity
+        onPress={() => router.push("/add")}
         style={{
           position: "absolute",
           width: 60,
