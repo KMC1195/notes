@@ -25,7 +25,7 @@ export default function settings() {
 
       <View style={{ marginTop: 20 }}>
         <View style={styles.settingContainer}>
-          <Text style={{ fontSize: hp(2.5) }}>Tryb ciemny</Text>
+          <Text style={{ fontSize: hp(2.5) }}>Tryb Ciemny</Text>
           <MySwitch
             isActive={isDarkModeActive}
             setIsActive={setIsDarkModeActive}

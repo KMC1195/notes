@@ -17,7 +17,8 @@ export default function index() {
 
   // states
   const [searchBarValue, setSearchBarValue] = useState("");
-  const [isListViewPopupVisible, setIsListViewPopupVisible] = useState(false);
+  const [isListViewPopupVisible, setIsListViewPopupVisible] =
+    useState<boolean>(false);
   const [list, setList] = useState([
     {
       title: "First",

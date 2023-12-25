@@ -47,7 +47,7 @@ export default function add() {
         <Text style={{ fontSize: hp(5.5) }}>Dodaj notatkę</Text>
       </View>
 
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ marginTop: hp(2) }}>
           <Text style={{ fontSize: hp(2), fontWeight: "500" }}>Tytuł:</Text>
           <Input

@@ -8,6 +8,7 @@ import {
 import React from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
+import Animated, { FadeIn } from "react-native-reanimated";
 
 export default function ChangeViewModePopup({ isVisible, setIsVisible }) {
   return (
@@ -20,7 +21,8 @@ export default function ChangeViewModePopup({ isVisible, setIsVisible }) {
             { backgroundColor: "rgba(0, 0, 0, 0.6)" },
           ]}
         >
-          <View
+          <Animated.View
+            entering={FadeIn}
             style={{
               opacity: 1,
               position: "fixed",
@@ -83,7 +85,7 @@ export default function ChangeViewModePopup({ isVisible, setIsVisible }) {
                 <Ionicons name="list" size={50} />
               </TouchableOpacity>
             </View>
-          </View>
+          </Animated.View>
         </Pressable>
       )}
     </>
