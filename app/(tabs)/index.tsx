@@ -51,7 +51,7 @@ export default function index() {
         }}
       >
         {/* Title */}
-        <Text style={{ fontSize: hp(7) }}>Notatki</Text>
+        <Text style={{ fontSize: hp(7), marginBottom: 20 }}>Notatki</Text>
 
         {/* Change notes view mode button */}
         <TouchableOpacity
@@ -76,6 +76,7 @@ export default function index() {
         setInputValue={setSearchBarValue}
         icon={"search"}
         placeholderText={"Szukaj notatek"}
+        multiline={false}
       />
 
       {/* List */}
