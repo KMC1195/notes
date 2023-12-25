@@ -8,7 +8,6 @@ import {
 } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import ListTile from "../../components/ListTile";
-import SearchBar from "../../components/Input";
 import AddFAB from "../../components/AddFAB";
 import ChangeViewModePopup from "../../components/ChangeViewModePopup";
 import Input from "../../components/Input";
@@ -87,7 +86,10 @@ export default function index() {
         showsVerticalScrollIndicator={false}
       />
 
-      <ChangeViewModePopup isVisible={isListViewPopupVisible} />
+      <ChangeViewModePopup
+        isVisible={isListViewPopupVisible}
+        setIsVisible={setIsListViewPopupVisible}
+      />
 
       <AddFAB />
     </View>

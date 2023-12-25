@@ -1,13 +1,17 @@
 import { View, Text, Switch, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
+import MySwitch from "../../components/MySwitch";
 
 export default function settings() {
   const insets = useSafeAreaInsets();
+
+  // states
+  const [isDarkModeActive, setIsDarkModeActive] = useState(false);
 
   return (
     <View
@@ -21,8 +25,11 @@ export default function settings() {
 
       <View style={{ marginTop: 20 }}>
         <View style={styles.settingContainer}>
-          <Text style={{ fontSize: hp(2) }}>Tryb Ciemny</Text>
-          <Switch />
+          <Text style={{ fontSize: hp(2.5) }}>Tryb ciemny</Text>
+          <MySwitch
+            isActive={isDarkModeActive}
+            setIsActive={setIsDarkModeActive}
+          />
         </View>
       </View>
     </View>
