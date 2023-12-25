@@ -1,9 +1,9 @@
-import { View, Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import React from "react";
 
-export default function ListTile() {
+export default function ListTile({ title }) {
   return (
-    <View
+    <TouchableOpacity
       style={{
         borderColor: "#606060",
         borderWidth: 2,
@@ -13,7 +13,7 @@ export default function ListTile() {
         marginBottom: 20,
       }}
     >
-      <Text>ListTile</Text>
-    </View>
+      <Text>{title}</Text>
+    </TouchableOpacity>
   );
 }

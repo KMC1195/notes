@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -18,6 +18,68 @@ export default function index() {
   // states
   const [searchBarValue, setSearchBarValue] = useState("");
   const [isListViewPopupVisible, setIsListViewPopupVisible] = useState(false);
+  const [list, setList] = useState([
+    {
+      title: "First",
+      description: "sth",
+      id: 1,
+    },
+    {
+      title: "second",
+      description: "sth",
+      id: 2,
+    },
+    {
+      title: "second",
+      description: "sth",
+      id: 2,
+    },
+    {
+      title: "second",
+      description: "sth",
+      id: 2,
+    },
+    {
+      title: "second",
+      description: "sth",
+      id: 2,
+    },
+    {
+      title: "second",
+      description: "sth",
+      id: 2,
+    },
+    {
+      title: "second",
+      description: "sth",
+      id: 2,
+    },
+    {
+      title: "second",
+      description: "sth",
+      id: 2,
+    },
+    {
+      title: "second",
+      description: "sth",
+      id: 2,
+    },
+    {
+      title: "second",
+      description: "sth",
+      id: 2,
+    },
+    {
+      title: "second",
+      description: "sth",
+      id: 2,
+    },
+    {
+      title: "second",
+      description: "sth",
+      id: 2,
+    },
+  ]);
 
   return (
     <View
@@ -64,18 +126,12 @@ export default function index() {
       />
 
       {/* List */}
-      <ScrollView
+      <FlatList
+        data={list}
+        renderItem={(el) => <ListTile title={el.item.title} />}
         style={{ marginTop: 20 }}
         showsVerticalScrollIndicator={false}
-      >
-        <ListTile />
-        <ListTile />
-        <ListTile />
-        <ListTile />
-        <ListTile />
-        <ListTile />
-        <ListTile />
-      </ScrollView>
+      />
 
       <ChangeViewModePopup isVisible={isListViewPopupVisible} />
 
