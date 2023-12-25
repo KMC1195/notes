@@ -8,9 +8,10 @@ import {
 } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import ListTile from "../../components/ListTile";
-import SearchBar from "../../components/SearchBar";
+import SearchBar from "../../components/Input";
 import AddFAB from "../../components/AddFAB";
 import ChangeViewModePopup from "../../components/ChangeViewModePopup";
+import Input from "../../components/Input";
 
 export default function index() {
   const insets = useSafeAreaInsets();
@@ -23,56 +24,6 @@ export default function index() {
       title: "First",
       description: "sth",
       id: 1,
-    },
-    {
-      title: "second",
-      description: "sth",
-      id: 2,
-    },
-    {
-      title: "second",
-      description: "sth",
-      id: 2,
-    },
-    {
-      title: "second",
-      description: "sth",
-      id: 2,
-    },
-    {
-      title: "second",
-      description: "sth",
-      id: 2,
-    },
-    {
-      title: "second",
-      description: "sth",
-      id: 2,
-    },
-    {
-      title: "second",
-      description: "sth",
-      id: 2,
-    },
-    {
-      title: "second",
-      description: "sth",
-      id: 2,
-    },
-    {
-      title: "second",
-      description: "sth",
-      id: 2,
-    },
-    {
-      title: "second",
-      description: "sth",
-      id: 2,
-    },
-    {
-      title: "second",
-      description: "sth",
-      id: 2,
     },
     {
       title: "second",
@@ -120,9 +71,11 @@ export default function index() {
         </TouchableOpacity>
       </View>
 
-      <SearchBar
-        searchBarValue={searchBarValue}
-        setSearchBarValue={setSearchBarValue}
+      <Input
+        inputValue={searchBarValue}
+        setInputValue={setSearchBarValue}
+        icon={"search"}
+        placeholderText={"Szukaj notatek"}
       />
 
       {/* List */}

@@ -3,9 +3,9 @@ import React from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function SearchBar({ searchBarValue, setSearchBarValue }) {
+export default function Input({ inputValue, setInputValue }) {
   const handleTextInput = (e: String) => {
-    setSearchBarValue(e);
+    setInputValue(e);
   };
 
   return (
@@ -27,7 +27,7 @@ export default function SearchBar({ searchBarValue, setSearchBarValue }) {
         placeholder="Szukaj notatek"
         placeholderTextColor={"#606060"}
         style={{ fontSize: 18, marginRight: 20 }}
-        value={searchBarValue}
+        value={inputValue}
         onChangeText={handleTextInput}
       />
     </View>
