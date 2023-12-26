@@ -10,7 +10,15 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import Animated, { FadeIn } from "react-native-reanimated";
 
-export default function ChangeViewModePopup({ isVisible, setIsVisible }) {
+interface types {
+  isVisible: boolean;
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function ChangeViewModePopup({
+  isVisible,
+  setIsVisible,
+}: types) {
   return (
     <>
       {isVisible && (

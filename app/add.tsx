@@ -82,7 +82,6 @@ export default function add() {
           }}
         >
           <Text style={{ fontSize: hp(2.5), color: "white" }}>Dodaj</Text>
-          <Ionicons name="add" size={hp(2.5)} color={"white"} />
         </TouchableOpacity>
       </ScrollView>
     </View>

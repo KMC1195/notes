@@ -7,7 +7,12 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 
-export default function MySwitch({ isActive, setIsActive }) {
+interface types {
+  isActive: boolean;
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function MySwitch({ isActive, setIsActive }: types) {
   const transform = useSharedValue(hp(0));
 
   const handleSwitch = () => {

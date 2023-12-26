@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -12,25 +12,16 @@ import AddFAB from "../../components/AddFAB";
 import ChangeViewModePopup from "../../components/ChangeViewModePopup";
 import Input from "../../components/Input";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "expo-router";
+
 export default function index() {
   const insets = useSafeAreaInsets();
 
   // states
   const [searchBarValue, setSearchBarValue] = useState("");
-  const [isListViewPopupVisible, setIsListViewPopupVisible] =
-    useState<boolean>(false);
-  const [list, setList] = useState([
-    {
-      title: "First",
-      description: "sth",
-      id: 1,
-    },
-    {
-      title: "second",
-      description: "sth",
-      id: 2,
-    },
-  ]);
+  const [isListViewPopupVisible, setIsListViewPopupVisible] = useState(false);
+  const [list, setList] = useState([{ title: "a", description: "b", id: 1 }]);
 
   return (
     <View

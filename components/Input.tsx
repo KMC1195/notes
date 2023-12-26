@@ -1,7 +1,15 @@
 import { View, TextInput } from "react-native";
-import React from "react";
+import React, { SetStateAction } from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
+
+interface types {
+  inputValue: string;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  icon: keyof typeof Ionicons.glyphMap;
+  placeholderText: string;
+  multiline: boolean;
+}
 
 export default function Input({
   inputValue,
@@ -9,8 +17,8 @@ export default function Input({
   icon,
   placeholderText,
   multiline,
-}) {
-  const handleTextInput = (e: String) => {
+}: types) {
+  const handleTextInput = (e: SetStateAction<string>) => {
     setInputValue(e);
   };
 
