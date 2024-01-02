@@ -1,16 +1,20 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import Input from "../components/Input";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function add() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const [titleInputValue, setTitleInputValue] = useState("");
   const [descInputValue, setDescInputValue] = useState("");
+  const [list, setList] = useState([]);
+
+  const addNote = async () => {};
 
   return (
     <View
@@ -69,6 +73,7 @@ export default function add() {
         </View>
 
         <TouchableOpacity
+          onPress={addNote}
           style={{
             display: "flex",
             flexDirection: "row",

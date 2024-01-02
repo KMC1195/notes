@@ -1,27 +1,60 @@
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from "react-native-responsive-screen";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import ListTile from "../../components/ListTile";
 import AddFAB from "../../components/AddFAB";
 import ChangeViewModePopup from "../../components/ChangeViewModePopup";
 import Input from "../../components/Input";
-
+import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useFocusEffect } from "expo-router";
+
+interface Note {
+  title: String;
+  description: String;
+  id: Number;
+}
 
 export default function index() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
 
   // states
   const [searchBarValue, setSearchBarValue] = useState("");
   const [isListViewPopupVisible, setIsListViewPopupVisible] = useState(false);
-  const [list, setList] = useState([{ title: "a", description: "b", id: 1 }]);
+  const [list, setList] = useState();
+
+  const findData = async () => {
+    // await AsyncStorage.clear();
+    // await AsyncStorage.setItem(
+    //   "data",
+    //   JSON.stringify([
+    //     { title: "1", description: "2", id: 1 },
+    //     { title: "2", description: "3", id: 2 },
+    //   ])
+    // );
+    try {
+      const result = await AsyncStorage.getItem("data");
+      if (result) {
+        const data = JSON.parse(result);
+        setList(data);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    findData();
+  }, []);
+
+  useEffect(() => {
+    // AsyncStorage.setItem("data", "[{title: '1', description: '2', id: 1}]");
+    // AsyncStorage.clear();
+    findData();
+  }, []);
 
   return (
     <View
@@ -73,7 +106,11 @@ export default function index() {
       {/* List */}
       <FlatList
         data={list}
-        renderItem={(el) => <ListTile title={el.item.title} />}
+        renderItem={(el) => (
+          <TouchableOpacity onPress={() => router.push(`/${el.item.id}`)}>
+            <ListTile title={el.item.title} />
+          </TouchableOpacity>
+        )}
         style={{ marginTop: 20 }}
         showsVerticalScrollIndicator={false}
       />
