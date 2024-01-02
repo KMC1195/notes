@@ -8,7 +8,7 @@ import ListTile from "../../components/ListTile";
 import AddFAB from "../../components/AddFAB";
 import ChangeViewModePopup from "../../components/ChangeViewModePopup";
 import Input from "../../components/Input";
-import { useRouter } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Note {
@@ -27,7 +27,7 @@ export default function index() {
   const [list, setList] = useState();
 
   const findData = async () => {
-    // await AsyncStorage.clear();
+    // await AsyncStorage.setItem("data", JSON.stringify([]));
     // await AsyncStorage.setItem(
     //   "data",
     //   JSON.stringify([
@@ -46,9 +46,9 @@ export default function index() {
     }
   };
 
-  useEffect(() => {
+  useFocusEffect(() => {
     findData();
-  }, []);
+  });
 
   useEffect(() => {
     // AsyncStorage.setItem("data", "[{title: '1', description: '2', id: 1}]");

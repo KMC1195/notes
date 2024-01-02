@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import Input from "../components/Input";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -14,7 +14,45 @@ export default function add() {
   const [descInputValue, setDescInputValue] = useState("");
   const [list, setList] = useState([]);
 
-  const addNote = async () => {};
+  const findData = async () => {
+    // await AsyncStorage.clear();
+    // await AsyncStorage.setItem(
+    //   "data",
+    //   JSON.stringify([
+    //     { title: "1", description: "2", id: 1 },
+    //     { title: "2", description: "3", id: 2 },
+    //   ])
+    // );
+    try {
+      const result = await AsyncStorage.getItem("data");
+      if (result) {
+        const data = JSON.parse(result);
+        setList(data);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useFocusEffect(() => {
+    findData();
+  });
+
+  const addNote = () => {
+    const newNote = {
+      title: titleInputValue,
+      description: descInputValue,
+      id: Date.now(),
+    };
+
+    if (titleInputValue && descInputValue) {
+      const updatedNotes = [newNote, ...list];
+      AsyncStorage.setItem("data", JSON.stringify(updatedNotes));
+      router.push("/");
+    } else {
+      alert("Uzupełnij wszystkie pola tekstowe!");
+    }
+  };
 
   return (
     <View
