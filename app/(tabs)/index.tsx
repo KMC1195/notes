@@ -133,7 +133,7 @@ export default function index() {
         setIsVisible={setIsListViewPopupVisible}
       />
 
-      <AddFAB />
+      <AddFAB data={list} />
     </View>
   );
 }

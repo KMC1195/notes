@@ -3,12 +3,19 @@ import React from "react";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function AddFAB() {
+export default function AddFAB({ data }) {
   const router = useRouter();
 
   return (
     <TouchableOpacity
-      onPress={() => router.push("/add")}
+      onPress={() =>
+        router.push({
+          pathname: "/add",
+          params: {
+            data: JSON.stringify(data),
+          },
+        })
+      }
       style={{
         position: "absolute",
         width: 60,
