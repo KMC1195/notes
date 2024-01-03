@@ -1,5 +1,11 @@
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
-import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  Pressable,
+} from "react-native";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
@@ -46,15 +52,13 @@ export default function index() {
     }
   };
 
-  useFocusEffect(() => {
-    findData();
-  });
-
-  useEffect(() => {
-    // AsyncStorage.setItem("data", "[{title: '1', description: '2', id: 1}]");
-    // AsyncStorage.clear();
-    findData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      // AsyncStorage.clear();
+      findData();
+      // AsyncStorage.setItem("data", JSON.stringify([]));
+    }, [])
+  );
 
   return (
     <View
@@ -107,9 +111,18 @@ export default function index() {
       <FlatList
         data={list}
         renderItem={(el) => (
-          <TouchableOpacity onPress={() => router.push(`/${el.item.id}`)}>
+          <Pressable
+            onPress={() =>
+              router.push({
+                pathname: `/${el.item.id}`,
+                params: {
+                  data: JSON.stringify(el.item),
+                },
+              })
+            }
+          >
             <ListTile title={el.item.title} />
-          </TouchableOpacity>
+          </Pressable>
         )}
         style={{ marginTop: 20 }}
         showsVerticalScrollIndicator={false}
