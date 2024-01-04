@@ -4,13 +4,21 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function id() {
   const insets = useSafeAreaInsets();
-  let { id, data } = useLocalSearchParams();
+  let { id, data, list } = useLocalSearchParams();
   const router = useRouter();
 
   data = JSON.parse(data);
+  list = JSON.parse(list);
+
+  const deleteItem = () => {
+    list = list.filter((el) => el.id != String(id));
+    AsyncStorage.setItem("data", JSON.stringify(list));
+    router.push("/");
+  };
 
   return (
     <View
@@ -57,6 +65,7 @@ export default function id() {
         </View>
       </View>
       <TouchableOpacity
+        onPress={deleteItem}
         style={{
           display: "flex",
           flexDirection: "row",

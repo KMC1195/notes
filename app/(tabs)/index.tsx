@@ -43,9 +43,11 @@ export default function index() {
     // );
     try {
       const result = await AsyncStorage.getItem("data");
-      if (result) {
+      if (result != null) {
         const data = JSON.parse(result);
         setList(data);
+      } else {
+        await AsyncStorage.setItem("data", JSON.stringify([]));
       }
     } catch (e) {
       console.log(e);
@@ -117,6 +119,7 @@ export default function index() {
                 pathname: `/${el.item.id}`,
                 params: {
                   data: JSON.stringify(el.item),
+                  list: JSON.stringify(list),
                 },
               })
             }
