@@ -14,8 +14,8 @@ export default function add() {
   const [descInputValue, setDescInputValue] = useState("");
   const [list, setList] = useState([]);
 
-  let { data } = useLocalSearchParams();
-  data = JSON.parse(data);
+  let { data: dataFromParams } = useLocalSearchParams();
+  const data = JSON.parse(dataFromParams === "string" ? dataFromParams : "");
 
   const addNote = () => {
     const newNote = {

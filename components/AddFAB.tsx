@@ -3,7 +3,17 @@ import React from "react";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function AddFAB({ data }) {
+type Note = {
+  title: String;
+  description: String;
+  id: Number;
+};
+
+type Notes = {
+  data: Note[];
+};
+
+export default function AddFAB({ data }: Notes) {
   const router = useRouter();
 
   return (

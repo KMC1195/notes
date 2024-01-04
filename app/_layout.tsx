@@ -45,10 +45,10 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    //<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(tabs)" />
-    </Stack>
-    //</ThemeProvider>
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+      </Stack>
+    </ThemeProvider>
   );
 }

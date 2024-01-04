@@ -1,10 +1,7 @@
-import { View, Text, Switch, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from "react-native-responsive-screen";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import MySwitch from "../../components/MySwitch";
 
 export default function settings() {

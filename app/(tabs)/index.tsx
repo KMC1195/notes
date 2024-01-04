@@ -5,7 +5,7 @@ import {
   FlatList,
   Pressable,
 } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
@@ -17,12 +17,6 @@ import Input from "../../components/Input";
 import { useFocusEffect, useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-interface Note {
-  title: String;
-  description: String;
-  id: Number;
-}
-
 export default function index() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
@@ -33,14 +27,6 @@ export default function index() {
   const [list, setList] = useState();
 
   const findData = async () => {
-    // await AsyncStorage.setItem("data", JSON.stringify([]));
-    // await AsyncStorage.setItem(
-    //   "data",
-    //   JSON.stringify([
-    //     { title: "1", description: "2", id: 1 },
-    //     { title: "2", description: "3", id: 2 },
-    //   ])
-    // );
     try {
       const result = await AsyncStorage.getItem("data");
       if (result != null) {
@@ -56,9 +42,7 @@ export default function index() {
 
   useFocusEffect(
     useCallback(() => {
-      // AsyncStorage.clear();
       findData();
-      // AsyncStorage.setItem("data", JSON.stringify([]));
     }, [])
   );
 
@@ -136,7 +120,7 @@ export default function index() {
         setIsVisible={setIsListViewPopupVisible}
       />
 
-      <AddFAB data={list} />
+      <AddFAB data={list ? list : []} />
     </View>
   );
 }

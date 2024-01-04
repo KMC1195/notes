@@ -15,9 +15,11 @@ export default function ListTile({ title }: types) {
           borderColor: "#606060",
           borderWidth: 2,
           borderRadius: 5,
-          paddingHorizontal: 20,
-          paddingVertical: 15,
+          paddingHorizontal: hp(2),
+          paddingVertical: hp(1),
           height: hp(5.5),
+          display: "flex",
+          justifyContent: "center",
         },
       ]}
     >

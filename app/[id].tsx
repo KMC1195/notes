@@ -1,22 +1,47 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+type ListElement = {
+  title: string;
+  description: string;
+  id: number;
+};
+
 export default function id() {
   const insets = useSafeAreaInsets();
-  let { id, data, list } = useLocalSearchParams();
+  let {
+    id,
+    data: dataFromParams,
+    list: listFromParams,
+  } = useLocalSearchParams();
   const router = useRouter();
 
-  data = JSON.parse(data);
-  list = JSON.parse(list);
+  const data = JSON.parse(
+    typeof dataFromParams === "string" ? dataFromParams : ""
+  );
+  const list = JSON.parse(
+    typeof listFromParams === "string" ? listFromParams : ""
+  );
+
+  function isElementsList(val: any): val is ListElement[] {
+    return Array.isArray(val) && val.every((e: any) => isElement(e));
+  }
+
+  function isElement(val: any): val is ListElement {
+    return "title" in val;
+  }
 
   const deleteItem = () => {
-    list = list.filter((el) => el.id != String(id));
-    AsyncStorage.setItem("data", JSON.stringify(list));
+    const listToBeSavedInStorage = isElementsList(list)
+      ? list.filter((el) => String(el.id) !== String(id))
+      : [];
+
+    AsyncStorage.setItem("data", JSON.stringify(listToBeSavedInStorage));
     router.push("/");
   };
 
