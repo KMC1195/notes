@@ -16,6 +16,7 @@ import ChangeViewModePopup from "../../components/ChangeViewModePopup";
 import Input from "../../components/Input";
 import { useFocusEffect, useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import MasonryList from "../../components/MasonryList";
 
 export default function index() {
   const insets = useSafeAreaInsets();
@@ -25,6 +26,7 @@ export default function index() {
   const [searchBarValue, setSearchBarValue] = useState("");
   const [isListViewPopupVisible, setIsListViewPopupVisible] = useState(false);
   const [list, setList] = useState();
+  const [popupValue, setPopupValue] = useState("masonry-list");
 
   const findData = async () => {
     try {
@@ -94,28 +96,34 @@ export default function index() {
       />
 
       {/* List */}
-      <FlatList
-        data={list}
-        renderItem={(el) => (
-          <Pressable
-            onPress={() =>
-              router.push({
-                pathname: `/${el.item.id}`,
-                params: {
-                  data: JSON.stringify(el.item),
-                  list: JSON.stringify(list),
-                },
-              })
-            }
-          >
-            <ListTile title={el.item.title} />
-          </Pressable>
-        )}
-        style={{ marginTop: 20 }}
-        showsVerticalScrollIndicator={false}
-      />
+      {popupValue === "list" && (
+        <FlatList
+          data={list}
+          renderItem={(el) => (
+            <View>
+              <Pressable
+                onPress={() =>
+                  router.push({
+                    pathname: `/${el.item.id}`,
+                    params: {
+                      data: JSON.stringify(el.item),
+                      list: JSON.stringify(list),
+                    },
+                  })
+                }
+              >
+                <ListTile title={el.item.title} />
+              </Pressable>
+            </View>
+          )}
+          style={{ marginTop: 20 }}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
 
+      {popupValue === "masonry-list" && <MasonryList list={list ? list : []} />}
       <ChangeViewModePopup
+        setPopupValue={setPopupValue}
         isVisible={isListViewPopupVisible}
         setIsVisible={setIsListViewPopupVisible}
       />

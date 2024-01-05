@@ -12,7 +12,6 @@ export default function add() {
   const router = useRouter();
   const [titleInputValue, setTitleInputValue] = useState("");
   const [descInputValue, setDescInputValue] = useState("");
-  const [list, setList] = useState([]);
 
   let { data: dataFromParams } = useLocalSearchParams();
   const data = JSON.parse(

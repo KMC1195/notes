@@ -1,6 +1,5 @@
 import { View, TextInput } from "react-native";
 import React, { SetStateAction } from "react";
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 
 interface types {
