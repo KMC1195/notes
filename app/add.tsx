@@ -15,7 +15,9 @@ export default function add() {
   const [list, setList] = useState([]);
 
   let { data: dataFromParams } = useLocalSearchParams();
-  const data = JSON.parse(dataFromParams === "string" ? dataFromParams : "");
+  const data = JSON.parse(
+    typeof dataFromParams === "string" ? dataFromParams : ""
+  );
 
   const addNote = () => {
     const newNote = {
