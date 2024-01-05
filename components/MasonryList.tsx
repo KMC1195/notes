@@ -5,6 +5,7 @@ import {
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import { useRouter } from "expo-router";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 interface ListElement {
   title: string;
@@ -29,31 +30,32 @@ export default function MasonryList({ list }: List) {
           gap: hp(2),
         }}
       >
-        {list.map((el) => (
-          <Pressable
-            onPress={() =>
-              router.push({
-                pathname: `/${el.id}`,
-                params: {
-                  data: JSON.stringify(el),
-                  list: JSON.stringify(list),
-                },
-              })
-            }
-            key={el.id}
-            style={{
-              height: hp(7),
-              width: wp(43.5),
-              borderRadius: 5,
-              borderColor: "grey",
-              borderWidth: 2,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ fontSize: hp(2.5) }}>{el.title}</Text>
-          </Pressable>
+        {list.map((el, index) => (
+          <Animated.View entering={FadeInDown.delay(index * 100)} key={el.id}>
+            <Pressable
+              onPress={() =>
+                router.push({
+                  pathname: `/${el.id}`,
+                  params: {
+                    data: JSON.stringify(el),
+                    list: JSON.stringify(list),
+                  },
+                })
+              }
+              style={{
+                height: hp(7),
+                width: wp(43.5),
+                borderRadius: 5,
+                borderColor: "grey",
+                borderWidth: 2,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ fontSize: hp(2.5) }}>{el.title}</Text>
+            </Pressable>
+          </Animated.View>
         ))}
       </View>
     </ScrollView>

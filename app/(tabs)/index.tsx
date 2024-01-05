@@ -17,6 +17,7 @@ import Input from "../../components/Input";
 import { useFocusEffect, useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MasonryList from "../../components/MasonryList";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 export default function index() {
   const insets = useSafeAreaInsets();
@@ -26,7 +27,7 @@ export default function index() {
   const [searchBarValue, setSearchBarValue] = useState("");
   const [isListViewPopupVisible, setIsListViewPopupVisible] = useState(false);
   const [list, setList] = useState();
-  const [popupValue, setPopupValue] = useState("masonry-list");
+  const [popupValue, setPopupValue] = useState("list");
 
   const findData = async () => {
     try {
@@ -100,7 +101,7 @@ export default function index() {
         <FlatList
           data={list}
           renderItem={(el) => (
-            <View>
+            <Animated.View entering={FadeInDown.delay(el.index * 100)}>
               <Pressable
                 onPress={() =>
                   router.push({
@@ -114,7 +115,7 @@ export default function index() {
               >
                 <ListTile title={el.item.title} />
               </Pressable>
-            </View>
+            </Animated.View>
           )}
           style={{ marginTop: 20 }}
           showsVerticalScrollIndicator={false}

@@ -80,7 +80,14 @@ export default function id() {
           >
             <Ionicons name="arrow-back" size={hp(2.5)} />
           </TouchableOpacity>
-          <Text style={{ fontSize: hp(5.5), flex: 1, lineHeight: 50 }}>
+          <Text
+            style={{
+              fontSize: hp(5.5),
+              flex: 1,
+              lineHeight: 50,
+              paddingTop: hp(1),
+            }}
+          >
             {data.title}
           </Text>
         </View>
